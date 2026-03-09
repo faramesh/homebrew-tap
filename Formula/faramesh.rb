@@ -1,33 +1,33 @@
 class Faramesh < Formula
   desc "Unified governance plane for AI agents — pre-execution authorization, policy-as-code, tamper-evident audit trail"
   homepage "https://faramesh.dev"
-  version "0.1.0"
+  version "1.0.0"
   license "Elastic-2.0"
 
   on_macos do
     on_arm do
       url "https://github.com/faramesh/faramesh-core/releases/download/v#{version}/faramesh-darwin-arm64"
-      sha256 "caa3beb4589d2e37880f1726754b26017c0499fd2414af5b966e590ca267ecb9"
+      sha256 "0db5cb92d2816628a13bea169c6f88795d5d4724c1efc9b0387d36881972a5a4"
     end
     on_intel do
       url "https://github.com/faramesh/faramesh-core/releases/download/v#{version}/faramesh-darwin-amd64"
-      sha256 "dbe643e60d9b43c76ed0b54c9a50091115b9958bd0e39660b662042f7cb5f73a"
+      sha256 "e8e75b2a9c2cdb0abd0ff012278309c0d81cb344697e21e2632019431e8e6a1f"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/faramesh/faramesh-core/releases/download/v#{version}/faramesh-linux-arm64"
-      sha256 "a246fc3502c1673be6c7fd4516ef195db5fea6786669d7840ccbbb266701792b"
+      sha256 "f4225ddbc00c428aeb02d13cb1cb22a91e65e7343ba6dd6299fb4ead1c8b026a"
     end
     on_intel do
       url "https://github.com/faramesh/faramesh-core/releases/download/v#{version}/faramesh-linux-amd64"
-      sha256 "0417706d14318e51b16f58118d1ebead416081c187a260de09a8f03dc645487e"
+      sha256 "f972e8cdac038ccacd6462a947fa3878af415cb8de63874be377666095a7357c"
     end
   end
 
   def install
-    bin.install "faramesh-#{OS.kernel_name.downcase}-#{Hardware::CPU.arch}" => "faramesh"
+    bin.install Dir["faramesh-*"].first => "faramesh"
   end
 
   def caveats
