@@ -32,12 +32,12 @@ class Faramesh < Formula
 
   def caveats
     <<~EOS
-      Zero-infrastructure local governance:
+      Quick start:
         faramesh init
         faramesh dev
-        faramesh run --broker -- python your_agent.py
+        .faramesh/bin/agent -- python your_agent.py
 
-      Production stack:
+      Production (OS sandbox via governance.fms runtime { os_tier = true }):
         faramesh apply
 
       Documentation: https://docs.faramesh.dev
@@ -47,6 +47,6 @@ class Faramesh < Formula
   test do
     assert_match version.to_s, shell_output("#{bin}/faramesh --version")
     shell_output("#{bin}/faramesh init --help")
-    shell_output("#{bin}/faramesh run --help")
+    shell_output("#{bin}/faramesh apply --help")
   end
 end
