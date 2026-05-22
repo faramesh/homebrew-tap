@@ -5,7 +5,8 @@ Official Homebrew tap for [Faramesh](https://faramesh.dev) — unified governanc
 ## Install
 
 ```bash
-brew install faramesh/tap/faramesh
+brew tap faramesh/tap
+brew install faramesh
 ```
 
 Or tap first, then install:
@@ -26,7 +27,7 @@ faramesh serve --policy policy.yaml   # Start the governance daemon
 ## Upgrade
 
 ```bash
-brew upgrade faramesh/tap/faramesh
+brew upgrade faramesh
 ```
 
 ## More

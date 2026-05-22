@@ -1,8 +1,13 @@
 class Faramesh < Formula
-  desc "Unified governance plane for AI agents — pre-execution authorization, policy-as-code, tamper-evident audit trail"
+  desc "Governance plane for AI agents"
   homepage "https://faramesh.dev"
   version "1.2.9"
   license "MPL-2.0"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   on_macos do
     on_arm do
