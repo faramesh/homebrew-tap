@@ -1,28 +1,28 @@
 class Faramesh < Formula
   desc "Unified governance plane for AI agents — pre-execution authorization, policy-as-code, tamper-evident audit trail"
   homepage "https://faramesh.dev"
-  version "0.6.0"
-  license "Elastic-2.0"
+  version "0.9.0"
+  license "MPL-2.0"
 
   on_macos do
     on_arm do
       url "https://github.com/faramesh/faramesh-core/releases/download/v#{version}/faramesh-darwin-arm64"
-      sha256 "933cbffd431f72b6ec171f3dde7a53a88f6baf3809d486d1d1b7bf1cfd912558"
+      sha256 "6f7496dfccd9f6d781768c5f761113ed55061b09af653d3ad35a94d7ce632e48"
     end
     on_intel do
       url "https://github.com/faramesh/faramesh-core/releases/download/v#{version}/faramesh-darwin-amd64"
-      sha256 "76aa5d4503990a39f523cec59d746b768f63b8d4d9747234276a3035673b1463"
+      sha256 "4b788064fc854ecb7d72293bd34d239d85538789dfbe6346d8c7329b0f2297a9"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/faramesh/faramesh-core/releases/download/v#{version}/faramesh-linux-arm64"
-      sha256 "d68011e56e5328007d1f15e5d83a042f51a8e93cf3dee46006901b29fb87dcee"
+      sha256 "0cedebcb959ab62599392a932243ff1e0ed5275d289c83f2173fe1900cf1f29c"
     end
     on_intel do
       url "https://github.com/faramesh/faramesh-core/releases/download/v#{version}/faramesh-linux-amd64"
-      sha256 "0906ac1afcfd02335e5741f55e51712d1369b6b7128406d5192161dad4bbb081"
+      sha256 "8b5f77cb898559300548ac642a28f2e244d0938191687bd8365d33d44e95b2fb"
     end
   end
 
@@ -32,21 +32,21 @@ class Faramesh < Formula
 
   def caveats
     <<~EOS
-      Run the demo to see Faramesh in action:
-        faramesh demo
-
-      Initialize Faramesh in your project:
+      Zero-infrastructure local governance:
         faramesh init
+        faramesh dev
+        .faramesh/bin/agent -- python your_agent.py
 
-      Start the governance daemon:
-        faramesh serve --policy policy.yaml
+      Production:
+        faramesh apply
 
-      Docs: https://faramesh.dev/docs
+      Docs: https://docs.faramesh.dev
     EOS
   end
 
   test do
     assert_match version.to_s, shell_output("#{bin}/faramesh --version")
-    system bin/"faramesh", "demo"
+    shell_output("#{bin}/faramesh init --help")
+    shell_output("#{bin}/faramesh apply --help")
   end
 end
