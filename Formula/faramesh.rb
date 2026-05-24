@@ -1,28 +1,28 @@
 class Faramesh < Formula
   desc "Unified governance plane for AI agents — pre-execution authorization, policy-as-code, tamper-evident audit trail"
   homepage "https://faramesh.dev"
-  version "0.2.0"
+  version "0.6.0"
   license "Elastic-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/faramesh/faramesh-core/releases/download/v\#{version}/faramesh-darwin-arm64"
-      sha256 "eb23886d855bfcc01feb93b783d4acf81055a6442818103357384d85e902865e"
+      url "https://github.com/faramesh/faramesh-core/releases/download/v#{version}/faramesh-darwin-arm64"
+      sha256 "933cbffd431f72b6ec171f3dde7a53a88f6baf3809d486d1d1b7bf1cfd912558"
     end
     on_intel do
-      url "https://github.com/faramesh/faramesh-core/releases/download/v\#{version}/faramesh-darwin-amd64"
-      sha256 "faef3466747bc445ca5854ed5fad044d2bb610727973f681a6570a32f119d54c"
+      url "https://github.com/faramesh/faramesh-core/releases/download/v#{version}/faramesh-darwin-amd64"
+      sha256 "76aa5d4503990a39f523cec59d746b768f63b8d4d9747234276a3035673b1463"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/faramesh/faramesh-core/releases/download/v\#{version}/faramesh-linux-arm64"
-      sha256 "0d307b7927d6f14ebd1320d018cc5946e692c2818380229dd4f3ab9179c6fa2e"
+      url "https://github.com/faramesh/faramesh-core/releases/download/v#{version}/faramesh-linux-arm64"
+      sha256 "d68011e56e5328007d1f15e5d83a042f51a8e93cf3dee46006901b29fb87dcee"
     end
     on_intel do
-      url "https://github.com/faramesh/faramesh-core/releases/download/v\#{version}/faramesh-linux-amd64"
-      sha256 "7d2be07d1c66356fecec07634f74547734559c74671ce9767103cea230b323e6"
+      url "https://github.com/faramesh/faramesh-core/releases/download/v#{version}/faramesh-linux-amd64"
+      sha256 "0906ac1afcfd02335e5741f55e51712d1369b6b7128406d5192161dad4bbb081"
     end
   end
 
@@ -46,7 +46,7 @@ class Faramesh < Formula
   end
 
   test do
-    assert_match version.to_s, shell_output("\#{bin}/faramesh --version")
+    assert_match version.to_s, shell_output("#{bin}/faramesh --version")
     system bin/"faramesh", "demo"
   end
 end
