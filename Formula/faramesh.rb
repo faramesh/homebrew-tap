@@ -1,28 +1,33 @@
 class Faramesh < Formula
-  desc "Unified governance plane for AI agents — pre-execution authorization, policy-as-code, tamper-evident audit trail"
+  desc "Governance plane for AI agents"
   homepage "https://faramesh.dev"
-  version "0.1.0"
-  license "Elastic-2.0"
+  version "0.2.0"
+  license "MPL-2.0"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   on_macos do
     on_arm do
-      url "https://github.com/faramesh/faramesh-core/releases/download/v\#{version}/faramesh-darwin-arm64"
-      sha256 "175a1c80c28e0d638f1b02d0c95102fbf80e436eb84386a3e5ed0a0b88692225"
+      url "https://github.com/faramesh/faramesh-core/releases/download/v#{version}/faramesh-darwin-arm64"
+      sha256 "6b89acce83e1b7dcbd3079f50c4762dc2657886413e3e3262d23f8d144a9ea24"
     end
     on_intel do
-      url "https://github.com/faramesh/faramesh-core/releases/download/v\#{version}/faramesh-darwin-amd64"
-      sha256 "412463df984158d091921655307ee0df92f422b8c66a95175ff319216ed40d25"
+      url "https://github.com/faramesh/faramesh-core/releases/download/v#{version}/faramesh-darwin-amd64"
+      sha256 "3febb4b39cb1cdad7dc1bec098394ef86711ff15510a5f5197fadb386c2c2020"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/faramesh/faramesh-core/releases/download/v\#{version}/faramesh-linux-arm64"
-      sha256 "55087e0785ab29189294d4e53913d5598586e0b6441b62ac1bf888f7243fd018"
+      url "https://github.com/faramesh/faramesh-core/releases/download/v#{version}/faramesh-linux-arm64"
+      sha256 "316f92764546763c56840287cb1f94393637b93726e3b57cd552c6f009f57222"
     end
     on_intel do
-      url "https://github.com/faramesh/faramesh-core/releases/download/v\#{version}/faramesh-linux-amd64"
-      sha256 "842b8d26794b5e1f3c9b36a981e173bbc73625c4506ab67d9dfa66e43472c979"
+      url "https://github.com/faramesh/faramesh-core/releases/download/v#{version}/faramesh-linux-amd64"
+      sha256 "d95c739252957c1059e58a66d52b74262562ff7a8c43812e03e34755df650ed9"
     end
   end
 
@@ -32,21 +37,21 @@ class Faramesh < Formula
 
   def caveats
     <<~EOS
-      Run the demo to see Faramesh in action:
-        faramesh demo
-
-      Initialize Faramesh in your project:
+      Zero-infrastructure local governance:
         faramesh init
+        faramesh dev
+        .faramesh/bin/agent -- python your_agent.py
 
-      Start the governance daemon:
-        faramesh serve --policy policy.yaml
+      Production:
+        faramesh apply
 
-      Docs: https://faramesh.dev/docs
+      Docs: https://docs.faramesh.dev
     EOS
   end
 
   test do
-    assert_match version.to_s, shell_output("\#{bin}/faramesh --version")
-    system bin/"faramesh", "demo"
+    assert_match version.to_s, shell_output("#{bin}/faramesh --version")
+    shell_output("#{bin}/faramesh init --help")
+    shell_output("#{bin}/faramesh apply --help")
   end
 end
